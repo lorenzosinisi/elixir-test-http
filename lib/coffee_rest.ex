@@ -1,20 +1,20 @@
 defmodule CoffeeRest do
-  # {:ok, _} = Plug.Adapters.Cowboy.http CoffeeRest, []
   use Router
-  
-  def route("GET", ["hello"], conn) do
-    conn |> Plug.Conn.send_resp(200, "Hello there")
+  use DefinedRouters
+  require Logger
+
+  def start(_type, _args) do
+    children = [
+      Plug.Adapters.Cowboy.child_spec(:http, 
+        CoffeeRest, 
+        [], 
+        port: Application.get_env(:coffee, :http_port)
+      )
+    ]
+
+    Logger.info "Started application http://localhost:#{Application.get_env(:coffee, :http_port)}"
+
+    Supervisor.start_link(children, strategy: :one_for_one)
   end
 
-  def route("GET", [], conn) do
-    conn |> Plug.Conn.send_resp(200, "CoffeRest app made in Elixir")
-  end
-
-  def route("GET", ["users", id], conn) do
-    conn |> Plug.Conn.send_resp(200, "User##{id} found in our DB")
-  end
-
-  def route(_method, _path, conn) do
-    conn |> Plug.Conn.send_resp(404, "Page not found")
-  end
 end

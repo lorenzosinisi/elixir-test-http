@@ -4,10 +4,10 @@ defmodule Coffee.Mixfile do
   def project do
     [app: :coffee,
      version: "0.0.1",
-     elixir: "~> 1.2",
+     elixir: "~> 1.4.5",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
-     deps: deps]
+     deps: deps()]
   end
   # Dependencies can be Hex packages:
   #
@@ -22,7 +22,8 @@ defmodule Coffee.Mixfile do
     [{:cowboy, "~> 1.0.0"},
      {:plug, "~> 1.0"},
      {:sqlite_ecto, "~> 1.0.0"},
-     {:ecto, "~> 1.0"}]
+     {:ecto, "~> 1.0"},
+     {:distillery, "~> 1.4"}]
   end
 
   # Configuration for the OTP application
@@ -36,7 +37,7 @@ defmodule Coffee.Mixfile do
         :ecto, 
         :cowboy, 
         :plug
-      ]
+      ], mod: {CoffeeRest, []}
     ]
   end
 
