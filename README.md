@@ -1,20 +1,22 @@
 # Coffee
 
-**TODO: Add description**
+## A simple test of a web application in Elixir
 
-## Installation
+## Extend it
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
+  git clone git@github.com:lorenzosinisi/elixir-test-http.git
+  mix deps.get
+  MIX_ENV=prod mix release
+  ...follow the instructions
 
-  1. Add coffee to your list of dependencies in `mix.exs`:
+## Note
 
-        def deps do
-          [{:coffee, "~> 0.0.1"}]
-        end
+Once it is trying to use port 80 it may require sudo to run properly (when starting up). 
 
-  2. Ensure coffee is started before your application:
 
-        def application do
-          [applications: [:coffee]]
-        end
+## Todo
+
+Write tests
+
+
 
