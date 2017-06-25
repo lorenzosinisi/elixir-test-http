@@ -5,8 +5,11 @@
 ## Extend it
 
   git clone git@github.com:lorenzosinisi/elixir-test-http.git
+
   mix deps.get
+
   MIX_ENV=prod mix release
+  
   ...follow the instructions
 
 ## Note
